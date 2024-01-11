@@ -11,8 +11,7 @@ The number argument specifies how many archives to keep. If 0 or 1, it keeps the
 import os
 from fabric.api import *
 
-env.hosts = ['100.27.13.221', '54.210.79.93']
-
+env.hosts = ['35.175.64.47', '54.152.38.216']
 
 def do_clean(number=0):
     """Delete out-of-date archives.

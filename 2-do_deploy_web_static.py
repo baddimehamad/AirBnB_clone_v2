@@ -17,7 +17,7 @@ The do_deploy() function takes in an archive path and deploys it to the web serv
 from fabric.api import put, run, env
 from os.path import exists
 
-env.hosts = ['100.27.13.221', '54.210.79.93']
+env.hosts = ['35.175.64.47', '54.152.38.216']
 
 
 def do_deploy(archive_path):

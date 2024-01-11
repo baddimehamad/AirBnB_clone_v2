@@ -1,24 +1,17 @@
 #!/usr/bin/python3
 """
-Fabric script to generate a .tgz archive from web_static folder, 
-deploy it to web servers, and unpack/install it in the /data/web_static/ 
-folder on the servers.
-
-do_pack() creates the .tgz archive locally.
-do_deploy() uploads and installs the archive on the servers.
-deploy() calls do_pack() and do_deploy().
-
-env.hosts contains the host server addresses.
+Fabric script based on the file 2-do_deploy_web_static.py that creates and
+distributes an archive to the web servers
 """
 
 from fabric.api import env, local, put, run
-
 from datetime import datetime
 from os.path import exists, isdir
 env.hosts = ['35.175.64.47', '54.152.38.216']
 
 
 def do_pack():
+    """generates a tgz archive"""
     try:
         date = datetime.now().strftime("%Y%m%d%H%M%S")
         if isdir("versions") is False:
@@ -31,6 +24,7 @@ def do_pack():
 
 
 def do_deploy(archive_path):
+    """distributes an archive to the web servers"""
     if exists(archive_path) is False:
         return False
     try:
@@ -51,6 +45,7 @@ def do_deploy(archive_path):
 
 
 def deploy():
+    """creates and distributes an archive to the web servers"""
     archive_path = do_pack()
     if archive_path is None:
         return False
